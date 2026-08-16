@@ -7,46 +7,69 @@ $wp_customize->get_setting('blogdescription')->transport = 'postMessage';
 $wp_customize->get_setting('header_textcolor')->transport = 'postMessage';
 $wp_customize->get_setting('custom_logo')->transport = 'refresh';
 
-$viral_pro_features = '<ul class="upsell-features">
-    <li>' . esc_html__("13 more demos that can be imported with one click", "viral-news") . '</li>
-    <li>' . esc_html__("Elementor compatible - Built your Home Page with Customizer or Elementor whichever you like", "viral-news") . '</li>
+$viral_pro_features = '<p><strong>' . esc_html__("$69 once. No subscription, no renewal fees.", "viral-news") . '</strong><br>' . esc_html__("Use Viral Pro on unlimited websites, keep every future update free, and get support replies in 10 hours or less.", "viral-news") . '</p>
+    <ul class="upsell-features">
+    <li>' . esc_html__("17 ready-made demos that can be imported with one click", "viral-news") . '</li>
+    <li>' . esc_html__("Elementor widgets built into the theme - no companion plugin needed", "viral-news") . '</li>
     <li>' . esc_html__("50+ magazine blocks for customizer", "viral-news") . '</li>
     <li>' . esc_html__("Customizer home page section reorder", "viral-news") . '</li>
     <li>' . esc_html__("45+ magazine widgets for Elementor", "viral-news") . '</li>
     <li>' . esc_html__("Ajax Tabs and Ajax Paginations for all Elementor widgets", "viral-news") . '</li>
+    <li>' . esc_html__("12 title bar styles and 10 thumbnail hover effects for magazine blocks", "viral-news") . '</li>
     <li>' . esc_html__("7 differently designed Blog/Archive layouts", "viral-news") . '</li>
     <li>' . esc_html__("7 differently designed Single Article/Post layouts", "viral-news") . '</li>
-    <li>' . esc_html__("22 custom widgets", "viral-news") . '</li>
+    <li>' . esc_html__("23 custom widgets", "viral-news") . '</li>
+    <li>' . esc_html__("Table of contents for single posts", "viral-news") . '</li>
+    <li>' . esc_html__("NewsArticle structured data in JSON-LD with speakable markup", "viral-news") . '</li>
+    <li>' . esc_html__("Google News sitemap", "viral-news") . '</li>
+    <li>' . esc_html__("Speculative loading - the next article opens instantly", "viral-news") . '</li>
+    <li>' . esc_html__("Icon library and Google font loading control", "viral-news") . '</li>
+    <li>' . esc_html__("Print stylesheet for articles", "viral-news") . '</li>
     <li>' . esc_html__("GDPR compliance & cookies consent", "viral-news") . '</li>
-    <li>' . esc_html__("Multiple header layouts and settings", "viral-news") . '</li>
+    <li>' . esc_html__("7 header layouts and settings", "viral-news") . '</li>
     <li>' . esc_html__("In-built megaMenu", "viral-news") . '</li>
+    <li>' . esc_html__("Off canvas menu", "viral-news") . '</li>
     <li>' . esc_html__("Advanced typography options", "viral-news") . '</li>
     <li>' . esc_html__("Advanced color options", "viral-news") . '</li>
     <li>' . esc_html__("Preloader option", "viral-news") . '</li>
     <li>' . esc_html__("Sidebar layout options", "viral-news") . '</li>
-    <li>' . esc_html__("Website layout (fullwidth or boxed)", "viral-news") . '</li>
     <li>' . esc_html__("Advanced blog & article settings", "viral-news") . '</li>
     <li>' . esc_html__("Advanced footer setting", "viral-news") . '</li>
     <li>' . esc_html__("Advanced advertising & monetization options", "viral-news") . '</li>
     <li>' . esc_html__("Blog single page - Author Box, Social Share and Related Post", "viral-news") . '</li>
     <li>' . esc_html__("WooCommerce compatible", "viral-news") . '</li>
-    <li>' . esc_html__("Fully multilingual and translation ready", "viral-news") . '</li>
-    <li>' . esc_html__("Fully RTL(right to left) languages compatible", "viral-news") . '</li>
+    <li>' . esc_html__("Fully compatible with WPML and Polylang", "viral-news") . '</li>
     <li>' . esc_html__("Maintenance mode option", "viral-news") . '</li>
     <li>' . esc_html__("Remove footer credit text", "viral-news") . '</li>
+    <li>' . esc_html__("Unlimited custom widget areas", "viral-news") . '</li>
+    <li>' . esc_html__("Video, gradient and parallax backgrounds for front page sections", "viral-news") . '</li>
+    <li>' . esc_html__("16 SVG shape dividers between front page sections", "viral-news") . '</li>
+    <li>' . esc_html__("Front page sections with full screen height", "viral-news") . '</li>
+    <li>' . esc_html__("Different layout, background and text color for each post and page", "viral-news") . '</li>
+    <li>' . esc_html__("Placeholder image and lazy loading for post thumbnails", "viral-news") . '</li>
+    <li>' . esc_html__("Sticky header and sticky sidebar", "viral-news") . '</li>
+    <li>' . esc_html__("Reading time and post view counts", "viral-news") . '</li>
     </ul>
-    <a class="ht-implink" href="' . admin_url('admin.php?page=viral-news-welcome&section=free_vs_pro') . '" target="_blank">' . esc_html__("Comparision - Free Vs Pro", "viral-news") . '</a>';
+    <a class="ht-implink button button-primary" href="' . esc_url(viral_news_upgrade_url('why-upgrade-cta', 'viral-news-customizer')) . '" target="_blank">' . esc_html__("Get Viral Pro - $69", "viral-news") . '</a>
+    <p style="text-align:center;margin:10px 0 0"><a href="' . admin_url('admin.php?page=viral-news-welcome&section=free_vs_pro') . '" target="_blank">' . esc_html__("Compare Free vs Pro", "viral-news") . '</a></p>';
+
+// Seasonal campaigns swap the banner copy automatically - see viral_news_get_active_campaign().
+$viral_news_campaign = viral_news_get_active_campaign();
+$viral_news_banner_title = $viral_news_campaign ? $viral_news_campaign['title'] : esc_html__('One-time payment. Unlimited sites. Lifetime updates.', 'viral-news');
+$viral_news_banner_button = $viral_news_campaign ? $viral_news_campaign['button'] : esc_html__('Get Viral Pro - $69', 'viral-news');
 
 $wp_customize->add_section(new Viral_News_Upgrade_Section($wp_customize, 'viral-news-pro-section', array(
     'priority' => 0,
-    //'title' => esc_html__('Christmas & New Year Discount!', 'viral-news'),
-    'upgrade_text' => esc_html__('Upgrade to Pro', 'viral-news'),
-    'upgrade_url' => 'https://hashthemes.com/wordpress-theme/viral-pro/?utm_source=wordpress&utm_medium=viral-news-customizer-button&utm_campaign=viral-news-upgrade',
+    'title' => $viral_news_banner_title,
+    'upgrade_text' => $viral_news_banner_button,
+    'upgrade_url' => viral_news_upgrade_url($viral_news_campaign ? 'banner-' . $viral_news_campaign['id'] : 'banner', 'viral-news-customizer-button'),
+    'active_callback' => 'viral_news_is_upgrade_notice_active'
 )));
 
 $wp_customize->add_section(new Viral_News_Upgrade_Section($wp_customize, 'viral-news-doc-section', array(
     'title' => esc_html__('Documentation', 'viral-news'),
     'priority' => 1000,
+    'class' => 'ht--single-row',
     'upgrade_text' => esc_html__('View', 'viral-news'),
     'upgrade_url' => 'https://hashthemes.com/documentation/viral-news-documentation/'
 )));
@@ -54,6 +77,7 @@ $wp_customize->add_section(new Viral_News_Upgrade_Section($wp_customize, 'viral-
 $wp_customize->add_section(new Viral_News_Upgrade_Section($wp_customize, 'viral-news-demo-import-section', array(
     'title' => esc_html__('Import Demo Content', 'viral-news'),
     'priority' => 999,
+    'class' => 'ht--single-row',
     'upgrade_text' => esc_html__('Import', 'viral-news'),
     'upgrade_url' => admin_url('admin.php?page=viral-news-welcome')
 )));
@@ -138,13 +162,13 @@ $wp_customize->add_control(new Viral_News_Upgrade_Info_Control($wp_customize, 'v
     'choices' => array(
         esc_html__('Fuild Layout', 'viral-news'),
         esc_html__('Set custom container & sidebar width', 'viral-news'),
-        esc_html__('16+ animated preloaders', 'viral-news'),
+        esc_html__('16 animated preloaders, or upload your own image', 'viral-news'),
         esc_html__('Admin page custom logo', 'viral-news'),
         esc_html__('Show/Hide Back to Top button with advanced settings', 'viral-news')
     ),
     'priority' => 100,
-    'upgrade_text' => esc_html__('Upgrade to Pro', 'viral-news'),
-    'upgrade_url' => 'https://hashthemes.com/wordpress-theme/viral-pro/?utm_source=wordpress&utm_medium=viral-news-link&utm_campaign=viral-news-upgrade',
+    'upgrade_text' => esc_html__('Unlock in Viral Pro', 'viral-news'),
+    'upgrade_url' => viral_news_upgrade_url('website-layout', 'viral-news-customizer'),
     'active_callback' => 'viral_news_is_upgrade_notice_active'
 )));
 
@@ -181,17 +205,37 @@ $wp_customize->add_control(new Viral_News_Upgrade_Info_Control($wp_customize, 'v
         esc_html__('Set title & tagline typography individually', 'viral-news'),
     ),
     'priority' => 100,
-    'upgrade_text' => esc_html__('Upgrade to Pro', 'viral-news'),
-    'upgrade_url' => 'https://hashthemes.com/wordpress-theme/viral-pro/?utm_source=wordpress&utm_medium=viral-news-link&utm_campaign=viral-news-upgrade',
+    'upgrade_text' => esc_html__('Unlock in Viral Pro', 'viral-news'),
+    'upgrade_url' => viral_news_upgrade_url('logo-favicon', 'viral-news-customizer'),
     'active_callback' => 'viral_news_is_upgrade_notice_active'
 )));
 
 /* SEO SECTION */
 $wp_customize->add_section('viral_news_seo_section', array(
-    'title' => esc_html__('SEO', 'viral-news'),
+    'title' => esc_html__('SEO and Performance', 'viral-news'),
     'panel' => 'viral_news_general_settings_panel',
     'priority' => 1000
 ));
+
+$wp_customize->add_section(new Viral_News_Upgrade_Section($wp_customize, 'viral-news-preloader-upgrade-section', array(
+    'title' => esc_html__('Preloader Settings', 'viral-news'),
+    'panel' => 'viral_news_general_settings_panel',
+    'priority' => 1001,
+    'upgrade_text' => esc_html__('Get Pro', 'viral-news'),
+    'class' => 'ht--single-row ht--pro-row',
+    'upgrade_url' => viral_news_upgrade_url('sec-preloader', 'viral-news-customizer'),
+    'active_callback' => 'viral_news_is_upgrade_notice_active'
+)));
+
+$wp_customize->add_section(new Viral_News_Upgrade_Section($wp_customize, 'viral-news-toc-upgrade-section', array(
+    'title' => esc_html__('Table of Contents', 'viral-news'),
+    'panel' => 'viral_news_general_settings_panel',
+    'priority' => 1002,
+    'upgrade_text' => esc_html__('Get Pro', 'viral-news'),
+    'class' => 'ht--single-row ht--pro-row',
+    'upgrade_url' => viral_news_upgrade_url('sec-table-of-contents', 'viral-news-customizer'),
+    'active_callback' => 'viral_news_is_upgrade_notice_active'
+)));
 
 $wp_customize->add_setting('viral_news_schema_markup', array(
     'sanitize_callback' => 'viral_news_sanitize_checkbox',
@@ -230,8 +274,8 @@ $wp_customize->add_control(new Viral_News_Upgrade_Info_Control($wp_customize, 'v
         esc_html__('Category tags color for front page blocks', 'viral-news'),
     ),
     'priority' => 100,
-    'upgrade_text' => esc_html__('Upgrade to Pro', 'viral-news'),
-    'upgrade_url' => 'https://hashthemes.com/wordpress-theme/viral-pro/?utm_source=wordpress&utm_medium=viral-news-link&utm_campaign=viral-news-upgrade',
+    'upgrade_text' => esc_html__('Unlock in Viral Pro', 'viral-news'),
+    'upgrade_url' => viral_news_upgrade_url('colors', 'viral-news-customizer'),
     'active_callback' => 'viral_news_is_upgrade_notice_active'
 )));
 
@@ -427,16 +471,16 @@ $wp_customize->add_setting('viral_news_typography_upgrade_text', array(
 ));
 
 $wp_customize->add_control(new Viral_News_Upgrade_Info_Control($wp_customize, 'viral_news_typography_upgrade_text', array(
-    'section' => 'viral_news_typography_section',
+    'section' => 'viral_news_body_typography_section',
     'label' => esc_html__('For more fonts and settings,', 'viral-news'),
     'choices' => array(
-        esc_html__('800+ Google fonts', 'viral-news'),
-        esc_html__('Seperate Typography settings for Menu, Header Titles(H1, H2, H3, H4, H5, H6), Page Title, Block Title, Widget Title and other', 'viral-news'),
-        esc_html__('More advanced Typography options like font family, font weight, text transform, text dectoration, font size, line height, letter spacing', 'viral-news')
+        esc_html__('Separate typography for the site title, tagline and page title', 'viral-news'),
+        esc_html__('Block title, widget title and sidebar title typography', 'viral-news'),
+        esc_html__('Table of contents title and list typography', 'viral-news')
     ),
     'priority' => 100,
-    'upgrade_text' => esc_html__('Upgrade to Pro', 'viral-news'),
-    'upgrade_url' => 'https://hashthemes.com/wordpress-theme/viral-pro/?utm_source=wordpress&utm_medium=viral-news-link&utm_campaign=viral-news-upgrade',
+    'upgrade_text' => esc_html__('Unlock in Viral Pro', 'viral-news'),
+    'upgrade_url' => viral_news_upgrade_url('typography', 'viral-news-customizer'),
     'active_callback' => 'viral_news_is_upgrade_notice_active'
 )));
 
@@ -541,8 +585,8 @@ $wp_customize->add_control(new Viral_News_Upgrade_Info_Control($wp_customize, 'v
         esc_html__('Set header height, custom background, border and text colors', 'viral-news')
     ),
     'priority' => 100,
-    'upgrade_text' => esc_html__('Upgrade to Pro', 'viral-news'),
-    'upgrade_url' => 'https://hashthemes.com/wordpress-theme/viral-pro/?utm_source=wordpress&utm_medium=viral-news-link&utm_campaign=viral-news-upgrade',
+    'upgrade_text' => esc_html__('Unlock in Viral Pro', 'viral-news'),
+    'upgrade_url' => viral_news_upgrade_url('top-header', 'viral-news-customizer'),
     'active_callback' => 'viral_news_is_upgrade_notice_active'
 )));
 
@@ -594,6 +638,30 @@ $wp_customize->add_control('viral_news_nav_style', array(
     )
 ));
 
+$wp_customize->add_setting('viral_news_main_header_preview', array(
+    'sanitize_callback' => 'viral_news_sanitize_text'
+));
+
+$wp_customize->add_control(new Viral_News_Pro_Preview_Control($wp_customize, 'viral_news_main_header_preview', array(
+    'section' => 'viral_news_main_header_settings_sec',
+    'priority' => 99,
+    'label' => esc_html__('7 header layouts in Viral Pro', 'viral-news'),
+    'columns' => 2,
+    'images' => array(
+        'headers/header-1.png',
+        'headers/header-2.png',
+        'headers/header-3.png',
+        'headers/header-4.png',
+        'headers/header-5.png',
+        'headers/header-6.png',
+        'headers/header-7.png'
+    ),
+    'more_count' => 0,
+    'upgrade_text' => esc_html__('Unlock these layouts', 'viral-news'),
+    'upgrade_url' => viral_news_upgrade_url('preview-header', 'viral-news-customizer'),
+    'active_callback' => 'viral_news_is_upgrade_notice_active'
+)));
+
 $wp_customize->add_setting('viral_news_main_header_upgrade_text', array(
     'sanitize_callback' => 'viral_news_sanitize_text'
 ));
@@ -614,8 +682,8 @@ $wp_customize->add_control(new Viral_News_Upgrade_Info_Control($wp_customize, 'v
         esc_html__('Page title custom typography', 'viral-news'),
     ),
     'priority' => 100,
-    'upgrade_text' => esc_html__('Upgrade to Pro', 'viral-news'),
-    'upgrade_url' => 'https://hashthemes.com/wordpress-theme/viral-pro/?utm_source=wordpress&utm_medium=viral-news-link&utm_campaign=viral-news-upgrade',
+    'upgrade_text' => esc_html__('Unlock in Viral Pro', 'viral-news'),
+    'upgrade_url' => viral_news_upgrade_url('main-header', 'viral-news-customizer'),
     'active_callback' => 'viral_news_is_upgrade_notice_active'
 )));
 
@@ -683,10 +751,17 @@ $wp_customize->add_control(new Viral_News_Upgrade_Info_Control($wp_customize, 'v
         esc_html__('Unlimited social icon with custom icon selection', 'viral-news')
     ),
     'priority' => 100,
-    'upgrade_text' => esc_html__('Upgrade to Pro', 'viral-news'),
-    'upgrade_url' => 'https://hashthemes.com/wordpress-theme/viral-pro/?utm_source=wordpress&utm_medium=viral-news-link&utm_campaign=viral-news-upgrade',
+    'upgrade_text' => esc_html__('Unlock in Viral Pro', 'viral-news'),
+    'upgrade_url' => viral_news_upgrade_url('social', 'viral-news-customizer'),
     'active_callback' => 'viral_news_is_upgrade_notice_active'
 )));
+
+$viral_news_pro_block_images = array(
+    'news/style1.png', 'news/style2.png', 'news/style3.png',
+    'tile/style1.png', 'tile/style2.png', 'tile/style3.png',
+    'slider/style1.png', 'slider/style2.png',
+    'carousel/style1.png', 'ticker/style1.png', 'ticker/style2.png'
+);
 
 /* ============FRONT PAGE PANEL============ */
 $wp_customize->add_panel('viral_news_front_page_panel', array(
@@ -761,6 +836,22 @@ $wp_customize->add_control(new Viral_News_Repeater_Control($wp_customize, 'viral
     )
 )));
 
+$wp_customize->add_setting('viral_news_top_section_preview', array(
+    'sanitize_callback' => 'viral_news_sanitize_text'
+));
+
+$wp_customize->add_control(new Viral_News_Pro_Preview_Control($wp_customize, 'viral_news_top_section_preview', array(
+    'section' => 'viral_news_frontpage_top_sec',
+    'priority' => 99,
+    'label' => esc_html__('More block styles in Viral Pro', 'viral-news'),
+    'columns' => 3,
+    'images' => $viral_news_pro_block_images,
+    'more_count' => 38,
+    'upgrade_text' => esc_html__('Unlock these layouts', 'viral-news'),
+    'upgrade_url' => viral_news_upgrade_url('preview-home-top', 'viral-news-customizer'),
+    'active_callback' => 'viral_news_is_upgrade_notice_active'
+)));
+
 $wp_customize->add_setting('viral_news_top_section_upgrade_text', array(
     'sanitize_callback' => 'viral_news_sanitize_text'
 ));
@@ -781,8 +872,8 @@ $wp_customize->add_control(new Viral_News_Upgrade_Info_Control($wp_customize, 'v
         esc_html__('Set typography for heading and post titles', 'viral-news'),
     ),
     'priority' => 100,
-    'upgrade_text' => esc_html__('Upgrade to Pro', 'viral-news'),
-    'upgrade_url' => 'https://hashthemes.com/wordpress-theme/viral-pro/?utm_source=wordpress&utm_medium=viral-news-link&utm_campaign=viral-news-upgrade',
+    'upgrade_text' => esc_html__('Unlock in Viral Pro', 'viral-news'),
+    'upgrade_url' => viral_news_upgrade_url('home-top', 'viral-news-customizer'),
     'active_callback' => 'viral_news_is_upgrade_notice_active'
 )));
 
@@ -847,6 +938,22 @@ $wp_customize->add_control(new Viral_News_Repeater_Control($wp_customize, 'viral
     )
 )));
 
+$wp_customize->add_setting('viral_news_middle_left_section_preview', array(
+    'sanitize_callback' => 'viral_news_sanitize_text'
+));
+
+$wp_customize->add_control(new Viral_News_Pro_Preview_Control($wp_customize, 'viral_news_middle_left_section_preview', array(
+    'section' => 'viral_news_frontpage_middle_left_sec',
+    'priority' => 99,
+    'label' => esc_html__('More block styles in Viral Pro', 'viral-news'),
+    'columns' => 3,
+    'images' => $viral_news_pro_block_images,
+    'more_count' => 38,
+    'upgrade_text' => esc_html__('Unlock these layouts', 'viral-news'),
+    'upgrade_url' => viral_news_upgrade_url('preview-home-middle-left', 'viral-news-customizer'),
+    'active_callback' => 'viral_news_is_upgrade_notice_active'
+)));
+
 $wp_customize->add_setting('viral_news_middle_left_section_upgrade_text', array(
     'sanitize_callback' => 'viral_news_sanitize_text'
 ));
@@ -867,8 +974,8 @@ $wp_customize->add_control(new Viral_News_Upgrade_Info_Control($wp_customize, 'v
         esc_html__('10 image hover styles', 'viral-news'),
         esc_html__('Set typography for heading and post titles', 'viral-news'),
     ),
-    'upgrade_text' => esc_html__('Upgrade to Pro', 'viral-news'),
-    'upgrade_url' => 'https://hashthemes.com/wordpress-theme/viral-pro/?utm_source=wordpress&utm_medium=viral-news-link&utm_campaign=viral-news-upgrade',
+    'upgrade_text' => esc_html__('Unlock in Viral Pro', 'viral-news'),
+    'upgrade_url' => viral_news_upgrade_url('home-middle-left', 'viral-news-customizer'),
     'active_callback' => 'viral_news_is_upgrade_notice_active'
 )));
 
@@ -950,6 +1057,22 @@ $wp_customize->add_control(new Viral_News_Repeater_Control($wp_customize, 'viral
     )
 )));
 
+$wp_customize->add_setting('viral_news_frontpage_carousel_preview', array(
+    'sanitize_callback' => 'viral_news_sanitize_text'
+));
+
+$wp_customize->add_control(new Viral_News_Pro_Preview_Control($wp_customize, 'viral_news_frontpage_carousel_preview', array(
+    'section' => 'viral_news_frontpage_carousel_sec',
+    'priority' => 99,
+    'label' => esc_html__('More block styles in Viral Pro', 'viral-news'),
+    'columns' => 3,
+    'images' => $viral_news_pro_block_images,
+    'more_count' => 38,
+    'upgrade_text' => esc_html__('Unlock these layouts', 'viral-news'),
+    'upgrade_url' => viral_news_upgrade_url('preview-home-carousel', 'viral-news-customizer'),
+    'active_callback' => 'viral_news_is_upgrade_notice_active'
+)));
+
 $wp_customize->add_setting('viral_news_frontpage_carousel_upgrade_text', array(
     'sanitize_callback' => 'viral_news_sanitize_text'
 ));
@@ -970,8 +1093,8 @@ $wp_customize->add_control(new Viral_News_Upgrade_Info_Control($wp_customize, 'v
         esc_html__('Set typography for heading and post titles', 'viral-news'),
     ),
     'priority' => 100,
-    'upgrade_text' => esc_html__('Upgrade to Pro', 'viral-news'),
-    'upgrade_url' => 'https://hashthemes.com/wordpress-theme/viral-pro/?utm_source=wordpress&utm_medium=viral-news-link&utm_campaign=viral-news-upgrade',
+    'upgrade_text' => esc_html__('Unlock in Viral Pro', 'viral-news'),
+    'upgrade_url' => viral_news_upgrade_url('home-carousel', 'viral-news-customizer'),
     'active_callback' => 'viral_news_is_upgrade_notice_active'
 )));
 
@@ -1042,6 +1165,22 @@ $wp_customize->add_control(new Viral_News_Repeater_Control($wp_customize, 'viral
     )
 )));
 
+$wp_customize->add_setting('viral_news_frontpage_bottom_sec_preview', array(
+    'sanitize_callback' => 'viral_news_sanitize_text'
+));
+
+$wp_customize->add_control(new Viral_News_Pro_Preview_Control($wp_customize, 'viral_news_frontpage_bottom_sec_preview', array(
+    'section' => 'viral_news_frontpage_bottom_sec',
+    'priority' => 99,
+    'label' => esc_html__('More block styles in Viral Pro', 'viral-news'),
+    'columns' => 3,
+    'images' => $viral_news_pro_block_images,
+    'more_count' => 38,
+    'upgrade_text' => esc_html__('Unlock these layouts', 'viral-news'),
+    'upgrade_url' => viral_news_upgrade_url('preview-home-bottom', 'viral-news-customizer'),
+    'active_callback' => 'viral_news_is_upgrade_notice_active'
+)));
+
 $wp_customize->add_setting('viral_news_frontpage_bottom_sec_upgrade_text', array(
     'sanitize_callback' => 'viral_news_sanitize_text'
 ));
@@ -1062,8 +1201,8 @@ $wp_customize->add_control(new Viral_News_Upgrade_Info_Control($wp_customize, 'v
         esc_html__('Set typography for heading and post titles', 'viral-news'),
     ),
     'priority' => 100,
-    'upgrade_text' => esc_html__('Upgrade to Pro', 'viral-news'),
-    'upgrade_url' => 'https://hashthemes.com/wordpress-theme/viral-pro/?utm_source=wordpress&utm_medium=viral-news-link&utm_campaign=viral-news-upgrade',
+    'upgrade_text' => esc_html__('Unlock in Viral Pro', 'viral-news'),
+    'upgrade_url' => viral_news_upgrade_url('home-bottom', 'viral-news-customizer'),
     'active_callback' => 'viral_news_is_upgrade_notice_active'
 )));
 
@@ -1086,8 +1225,8 @@ $wp_customize->add_section(new Viral_News_Upgrade_Section($wp_customize, 'viral-
         esc_html__('- Three Column Module', 'viral-news'),
         esc_html__('- Google Ads/Image Ads in betweeen Modules', 'viral-news')
     ),
-    'upgrade_text' => esc_html__('Upgrade to Pro', 'viral-news'),
-    'upgrade_url' => 'https://hashthemes.com/wordpress-theme/viral-pro/?utm_source=wordpress&utm_medium=viral-news-link&utm_campaign=viral-news-upgrade',
+    'upgrade_text' => esc_html__('Unlock in Viral Pro', 'viral-news'),
+    'upgrade_url' => viral_news_upgrade_url('sec-frontpage-modules', 'viral-news-customizer'),
     'active_callback' => 'viral_news_is_upgrade_notice_active'
 )));
 
@@ -1123,6 +1262,30 @@ $wp_customize->add_control('viral_news_display_date_option', array(
     )
 ));
 
+$wp_customize->add_setting('viral_news_single_post_preview', array(
+    'sanitize_callback' => 'viral_news_sanitize_text'
+));
+
+$wp_customize->add_control(new Viral_News_Pro_Preview_Control($wp_customize, 'viral_news_single_post_preview', array(
+    'section' => 'viral_news_single_post_sec',
+    'priority' => 99,
+    'label' => esc_html__('7 single post layouts in Viral Pro', 'viral-news'),
+    'columns' => 3,
+    'images' => array(
+        'single-layouts/layout1.png',
+        'single-layouts/layout2.png',
+        'single-layouts/layout3.png',
+        'single-layouts/layout4.png',
+        'single-layouts/layout5.png',
+        'single-layouts/layout6.png',
+        'single-layouts/layout7.png'
+    ),
+    'more_count' => 0,
+    'upgrade_text' => esc_html__('Unlock these layouts', 'viral-news'),
+    'upgrade_url' => viral_news_upgrade_url('preview-single-post', 'viral-news-customizer'),
+    'active_callback' => 'viral_news_is_upgrade_notice_active'
+)));
+
 $wp_customize->add_setting('viral_news_single_post_sec_upgrade_text', array(
     'sanitize_callback' => 'viral_news_sanitize_text'
 ));
@@ -1137,14 +1300,14 @@ $wp_customize->add_control(new Viral_News_Upgrade_Info_Control($wp_customize, 'v
         esc_html__('Sticky & non sticky social share button', 'viral-news'),
         esc_html__('Author box & 4 differently designed related posts', 'viral-news'),
     ),
-    'upgrade_text' => esc_html__('Upgrade to Pro', 'viral-news'),
-    'upgrade_url' => 'https://hashthemes.com/wordpress-theme/viral-pro/?utm_source=wordpress&utm_medium=viral-news-link&utm_campaign=viral-news-upgrade',
+    'upgrade_text' => esc_html__('Unlock in Viral Pro', 'viral-news'),
+    'upgrade_url' => viral_news_upgrade_url('single-post', 'viral-news-customizer'),
     'active_callback' => 'viral_news_is_upgrade_notice_active'
 )));
 
 /* ============PRO FEATURES============ */
 $wp_customize->add_section('viral_pro_feature_section', array(
-    'title' => esc_html__('Pro Theme Features', 'viral-news'),
+    'title' => esc_html__('Why Upgrade to Viral Pro?', 'viral-news'),
     'priority' => 0
 ));
 
@@ -1155,6 +1318,7 @@ $wp_customize->add_setting('viral_news_hide_upgrade_notice', array(
 
 $wp_customize->add_control(new Viral_News_Toggle_Control($wp_customize, 'viral_news_hide_upgrade_notice', array(
     'section' => 'viral_pro_feature_section',
+    'priority' => 20,
     'label' => esc_html__('Hide all Upgrade Notices from Customizer', 'viral-news'),
     'description' => esc_html__('If you don\'t want to upgrade to premium version then you can turn off all the upgrade notices. However you can turn it on anytime if you make mind to upgrade to premium version.', 'viral-news')
 )));
@@ -1166,6 +1330,153 @@ $wp_customize->add_setting('viral_pro_features', array(
 $wp_customize->add_control(new Viral_News_Upgrade_Info_Control($wp_customize, 'viral_pro_features', array(
     'settings' => 'viral_pro_features',
     'section' => 'viral_pro_feature_section',
+    'priority' => 10,
     'description' => $viral_pro_features,
+    'active_callback' => 'viral_news_is_upgrade_notice_active'
+)));
+
+/* ============PRO TEASER SECTIONS & CONTEXTUAL UPSELLS============ */
+
+$wp_customize->add_setting('viral_news_google_font_upgrade_text', array(
+    'sanitize_callback' => 'viral_news_sanitize_text'
+));
+
+$wp_customize->add_control(new Viral_News_Upgrade_Info_Control($wp_customize, 'viral_news_google_font_upgrade_text', array(
+    'section' => 'viral_news_google_font_section',
+    'label' => esc_html__('For more font and icon control,', 'viral-news'),
+    'choices' => array(
+        esc_html__('Switch off the icon libraries you do not use - they leave the page and the icon picker', 'viral-news'),
+        esc_html__('Request only the Google font weights your site actually uses', 'viral-news'),
+        esc_html__('Preconnect to the Google font hosts for a faster first paint', 'viral-news')
+    ),
+    'priority' => 100,
+    'upgrade_text' => esc_html__('Unlock in Viral Pro', 'viral-news'),
+    'upgrade_url' => viral_news_upgrade_url('google-fonts', 'viral-news-customizer'),
+    'active_callback' => 'viral_news_is_upgrade_notice_active'
+)));
+
+$wp_customize->add_setting('viral_news_seo_upgrade_text', array(
+    'sanitize_callback' => 'viral_news_sanitize_text'
+));
+
+$wp_customize->add_control(new Viral_News_Upgrade_Info_Control($wp_customize, 'viral_news_seo_upgrade_text', array(
+    'section' => 'viral_news_seo_section',
+    'label' => esc_html__('For more SEO options,', 'viral-news'),
+    'choices' => array(
+        esc_html__('NewsArticle structured data in JSON-LD with speakable markup', 'viral-news'),
+        esc_html__('Google News sitemap so your posts get picked up faster', 'viral-news'),
+        esc_html__('Speculative loading - the next article opens instantly', 'viral-news'),
+        esc_html__('Print stylesheet for articles', 'viral-news')
+    ),
+    'priority' => 100,
+    'upgrade_text' => esc_html__('Unlock in Viral Pro', 'viral-news'),
+    'upgrade_url' => viral_news_upgrade_url('seo', 'viral-news-customizer'),
+    'active_callback' => 'viral_news_is_upgrade_notice_active'
+)));
+
+$wp_customize->add_setting('viral_news_header_typography_upgrade_text', array(
+    'sanitize_callback' => 'viral_news_sanitize_text'
+));
+
+$wp_customize->add_control(new Viral_News_Upgrade_Info_Control($wp_customize, 'viral_news_header_typography_upgrade_text', array(
+    'section' => 'viral_news_header_typography_section',
+    'label' => esc_html__('For more heading options,', 'viral-news'),
+    'choices' => array(
+        esc_html__('Set H1, H2, H3, H4, H5 and H6 typography individually', 'viral-news'),
+        esc_html__('Separate typography for Page Title, Block Title and Widget Title', 'viral-news'),
+        esc_html__('Font size control for every heading level', 'viral-news'),
+        esc_html__('Custom heading color for each heading level', 'viral-news')
+    ),
+    'priority' => 100,
+    'upgrade_text' => esc_html__('Unlock in Viral Pro', 'viral-news'),
+    'upgrade_url' => viral_news_upgrade_url('typo-header', 'viral-news-customizer'),
+    'active_callback' => 'viral_news_is_upgrade_notice_active'
+)));
+
+$wp_customize->add_setting('viral_news_menu_typography_upgrade_text', array(
+    'sanitize_callback' => 'viral_news_sanitize_text'
+));
+
+$wp_customize->add_control(new Viral_News_Upgrade_Info_Control($wp_customize, 'viral_news_menu_typography_upgrade_text', array(
+    'section' => 'viral_news_menu_typography_section',
+    'label' => esc_html__('For more menu options,', 'viral-news'),
+    'choices' => array(
+        esc_html__('Sub menu text, hover and background colors', 'viral-news'),
+        esc_html__('10 menu hover styles', 'viral-news'),
+        esc_html__('Menu text, hover and background color options', 'viral-news'),
+        esc_html__('In-built MegaMenu and OffCanvas menu', 'viral-news')
+    ),
+    'priority' => 100,
+    'upgrade_text' => esc_html__('Unlock in Viral Pro', 'viral-news'),
+    'upgrade_url' => viral_news_upgrade_url('typo-menu', 'viral-news-customizer'),
+    'active_callback' => 'viral_news_is_upgrade_notice_active'
+)));
+
+$wp_customize->add_section(new Viral_News_Upgrade_Section($wp_customize, 'viral-news-sidebar-upgrade-section', array(
+    'title' => esc_html__('Sidebar Settings', 'viral-news'),
+    'priority' => 31,
+    'upgrade_text' => esc_html__('Get Pro', 'viral-news'),
+    'class' => 'ht--single-row ht--pro-row',
+    'upgrade_url' => viral_news_upgrade_url('sec-sidebar', 'viral-news-customizer'),
+    'active_callback' => 'viral_news_is_upgrade_notice_active'
+)));
+
+$wp_customize->add_section(new Viral_News_Upgrade_Section($wp_customize, 'viral-news-blog-upgrade-section', array(
+    'title' => esc_html__('Blog & Archive Settings', 'viral-news'),
+    'priority' => 32,
+    'upgrade_text' => esc_html__('Get Pro', 'viral-news'),
+    'class' => 'ht--single-row ht--pro-row',
+    'upgrade_url' => viral_news_upgrade_url('sec-blog-archive', 'viral-news-customizer'),
+    'active_callback' => 'viral_news_is_upgrade_notice_active'
+)));
+
+$wp_customize->add_section(new Viral_News_Upgrade_Section($wp_customize, 'viral-news-footer-upgrade-section', array(
+    'title' => esc_html__('Footer Settings', 'viral-news'),
+    'priority' => 33,
+    'upgrade_text' => esc_html__('Get Pro', 'viral-news'),
+    'class' => 'ht--single-row ht--pro-row',
+    'upgrade_url' => viral_news_upgrade_url('sec-footer', 'viral-news-customizer'),
+    'active_callback' => 'viral_news_is_upgrade_notice_active'
+)));
+
+$wp_customize->add_section(new Viral_News_Upgrade_Section($wp_customize, 'viral-news-site-tools-upgrade-section', array(
+    'title' => esc_html__('GDPR & Maintenance', 'viral-news'),
+    'priority' => 34,
+    'upgrade_text' => esc_html__('Get Pro', 'viral-news'),
+    'class' => 'ht--single-row ht--pro-row',
+    'upgrade_url' => viral_news_upgrade_url('sec-gdpr-maintenance', 'viral-news-customizer'),
+    'active_callback' => 'viral_news_is_upgrade_notice_active'
+)));
+
+$wp_customize->add_section(new Viral_News_Upgrade_Section($wp_customize, 'viral-news-ads-upgrade-section', array(
+    'title' => esc_html__('Advertising & Monetization', 'viral-news'),
+    'priority' => 35,
+    'upgrade_text' => esc_html__('Get Pro', 'viral-news'),
+    'class' => 'ht--single-row ht--pro-row',
+    'upgrade_url' => viral_news_upgrade_url('sec-advertising', 'viral-news-customizer'),
+    'active_callback' => 'viral_news_is_upgrade_notice_active'
+)));
+
+$wp_customize->add_setting('viral_news_blog_layout_preview', array(
+    'sanitize_callback' => 'viral_news_sanitize_text'
+));
+
+$wp_customize->add_control(new Viral_News_Pro_Preview_Control($wp_customize, 'viral_news_blog_layout_preview', array(
+    'section' => 'viral_news_single_post_sec',
+    'priority' => 98,
+    'label' => esc_html__('7 blog and archive layouts in Viral Pro', 'viral-news'),
+    'columns' => 3,
+    'images' => array(
+        'blog-layouts/layout1.png',
+        'blog-layouts/layout2.png',
+        'blog-layouts/layout3.png',
+        'blog-layouts/layout4.png',
+        'blog-layouts/layout5.png',
+        'blog-layouts/layout6.png',
+        'blog-layouts/layout7.png'
+    ),
+    'more_count' => 0,
+    'upgrade_text' => esc_html__('Unlock these layouts', 'viral-news'),
+    'upgrade_url' => viral_news_upgrade_url('preview-blog-layouts', 'viral-news-customizer'),
     'active_callback' => 'viral_news_is_upgrade_notice_active'
 )));
